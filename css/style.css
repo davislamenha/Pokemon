@@ -1,8 +1,20 @@
-
-
-/* RESET AND GERAL SETTINGS*/
 body {
+  background: #ffd57b;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+ul {
+  list-style: none;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background: #de5239;
+}
+header p {
+  font: 400 30px/1 "Sigmar One", serif;
+  text-transform: uppercase;
+  color: #fff;
 }
