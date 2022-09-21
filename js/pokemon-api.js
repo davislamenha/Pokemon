@@ -27,13 +27,19 @@ export default class PokemonApi {
     this.pokeImgFront.attributes.src.value = sprites.front_default;
     this.pokeImgBack.attributes.src.value = sprites.back_default;
     this.pokeName.innerText = name;
-    this.pokeHp.innerText = stats[0].base_stat;
-    this.pokeAttack.innerText = stats[1].base_stat;
-    this.pokeDefense.innerText = stats[2].base_stat;
+
+    this.pokeHp.style.width = `${stats[0].base_stat / 2}px`;
+    this.pokeAttack.style.width = `${stats[1].base_stat / 2}px`;
+    this.pokeDefense.style.width = `${stats[2].base_stat / 2}px`;
+
+    this.pokeType1.setAttribute("class", "poke-type1");
+    this.pokeType2.setAttribute("class", "poke-type2");
     this.pokeType1.innerText = types[0].type.name;
+    this.pokeType1.classList.add(types[0].type.name);
     if (types[1]) {
       this.pokeType2.classList.remove("hide");
       this.pokeType2.innerText = types[1].type.name;
+      this.pokeType2.classList.add(types[1].type.name);
     } else {
       this.pokeType2.classList.add("hide");
     }
