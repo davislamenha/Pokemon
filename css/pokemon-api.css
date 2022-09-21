@@ -17,6 +17,7 @@
   padding: 20px;
   font: 400 30px/1 "VT323", monospace;
 }
+
 .poke-img-front {
   grid-column: 1;
   justify-self: stretch;
@@ -24,6 +25,13 @@
 .poke-img-back {
   grid-column: 2;
   justify-self: stretch;
+}
+.poke-type1,
+.poke-type2,
+.poke-name {
+  color: #333;
+  text-transform: capitalize;
+  transition: 0.3s ease-in;
 }
 .poke-type1,
 .poke-type2 {
@@ -38,9 +46,18 @@
   gap: 20px;
   justify-content: center;
 }
+.poke-hp,
+.poke-defense,
+.poke-attack {
+  position: relative;
+  padding: 15px;
+  color: #fff;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+
 .poke-hp {
   background: #8b2900;
-  position: relative;
 }
 .poke-hp::after {
   position: absolute;
@@ -53,7 +70,6 @@
 }
 .poke-attack {
   background: #de5239;
-  position: relative;
 }
 .poke-attack::after {
   position: absolute;
@@ -65,7 +81,6 @@
   font: 400 30px/1 "VT323", monospace;
 }
 .poke-defense {
-  position: relative;
   background: #08398b;
 }
 .poke-defense::after {
@@ -83,12 +98,54 @@
 }
 .btn-container button {
   border: none;
-  background: #444;
+  box-shadow: 5px 5px 0 0 #333;
+  background: #de5239;
   color: #fff;
   padding: 10px 20px;
-  border-radius: 5px;
+
   font: 400 20px/1 "VT323", monospace;
+  transition: 0.3s ease-in-out;
+}
+.btn-container button:hover {
+  box-shadow: 2px 2px 0 0 #333;
+  background: #8b2900;
 }
 .hide {
   opacity: 0;
+}
+
+/* ESTILO POR TIPO DE POKEMON */
+.normal,
+.ground,
+.fighting,
+.flying {
+  color: #412918;
+}
+.fire,
+.dragon {
+  color: #de5239;
+}
+.water,
+.ice {
+  color: #08398b;
+}
+.grass,
+.bug {
+  color: #73ac31;
+}
+.poison,
+.psychic,
+.fairy {
+  color: #944abd;
+}
+.electric {
+  color: #f6bd20;
+}
+.rock,
+.ghost,
+.steel {
+  color: #6a6a52;
+}
+.dark {
+  color: #333;
 }
