@@ -9,6 +9,13 @@ export default class PokemonApi {
     this.pokeDefense = document.querySelector(".poke-defense");
     this.pokeType1 = document.querySelector(".poke-type1");
     this.pokeType2 = document.querySelector(".poke-type2");
+
+    this.nextBtn = document.querySelector(".next");
+    this.previousBtn = document.querySelector(".prev");
+
+    this.currentPokemon = 1;
+    this.nextPokemon = 2;
+    this.previousPokemon = 0;
   }
 
   async getUrl(id) {
@@ -30,7 +37,37 @@ export default class PokemonApi {
     }
   }
 
+  next() {
+    if (this.getUrl(this.nextPokemon)) {
+      this.getUrl(this.nextPokemon);
+      this.nextPokemon += 1;
+      this.previousPokemon += 1;
+      this.currentPokemon += 1;
+    }
+  }
+
+  previous() {
+    if (this.currentPokemon > 1) {
+      this.getUrl(this.previousPokemon);
+      this.nextPokemon -= 1;
+      this.previousPokemon -= 1;
+      this.currentPokemon -= 1;
+    }
+  }
+
+  addEvents() {
+    this.nextBtn.addEventListener("click", this.next);
+    this.previousBtn.addEventListener("click", this.previous);
+  }
+
+  bind() {
+    this.next = this.next.bind(this);
+    this.previous = this.previous.bind(this);
+  }
+
   init() {
-    this.getUrl(1);
+    this.getUrl(this.currentPokemon);
+    this.bind();
+    this.addEvents();
   }
 }
