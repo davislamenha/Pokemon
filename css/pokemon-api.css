@@ -17,10 +17,13 @@
   padding: 20px;
   font: 400 30px/1 "VT323", monospace;
 }
-.poke-img {
-  grid-column: 1/-1;
-  padding-block: 40px;
-  justify-self: center;
+.poke-img-front {
+  grid-column: 1;
+  justify-self: stretch;
+}
+.poke-img-back {
+  grid-column: 2;
+  justify-self: stretch;
 }
 .poke-type1,
 .poke-type2 {

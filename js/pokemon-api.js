@@ -2,7 +2,8 @@ export default class PokemonApi {
   constructor(url) {
     this.url = url;
 
-    this.pokeImg = document.querySelector(".poke-img");
+    this.pokeImgFront = document.querySelector(".poke-img-front");
+    this.pokeImgBack = document.querySelector(".poke-img-back");
     this.pokeName = document.querySelector(".poke-name");
     this.pokeHp = document.querySelector(".poke-hp");
     this.pokeAttack = document.querySelector(".poke-attack");
@@ -23,7 +24,8 @@ export default class PokemonApi {
     const dados = await resp.json();
     const { name, stats, types, sprites } = dados;
 
-    this.pokeImg.attributes.src.value = sprites.front_default;
+    this.pokeImgFront.attributes.src.value = sprites.front_default;
+    this.pokeImgBack.attributes.src.value = sprites.back_default;
     this.pokeName.innerText = name;
     this.pokeHp.innerText = stats[0].base_stat;
     this.pokeAttack.innerText = stats[1].base_stat;
