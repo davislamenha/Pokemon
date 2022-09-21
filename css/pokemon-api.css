@@ -1,0 +1,91 @@
+.poke-container {
+  display: grid;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 50px;
+}
+.poke-card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 200px));
+
+  gap: 15px;
+  background: #fff;
+  box-shadow: 0 0 0 20px #fff;
+  border: 10px solid #de5239;
+  width: 400px;
+
+  padding: 20px;
+  font: 400 30px/1 "VT323", monospace;
+}
+.poke-img {
+  grid-column: 1/-1;
+  padding-block: 40px;
+  justify-self: center;
+}
+.poke-type1,
+.poke-type2 {
+  grid-column: 1;
+}
+.stats {
+  grid-column: 2;
+  grid-row: 2/6;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+.poke-hp {
+  background: #8b2900;
+  position: relative;
+}
+.poke-hp::after {
+  position: absolute;
+  display: block;
+  content: "HP";
+  color: #8b2900;
+  top: 0;
+  left: -40px;
+  font: 400 30px/1 "VT323", monospace;
+}
+.poke-attack {
+  background: #de5239;
+  position: relative;
+}
+.poke-attack::after {
+  position: absolute;
+  display: block;
+  content: "ATK";
+  color: #de5239;
+  top: 0;
+  left: -50px;
+  font: 400 30px/1 "VT323", monospace;
+}
+.poke-defense {
+  position: relative;
+  background: #08398b;
+}
+.poke-defense::after {
+  position: absolute;
+  display: block;
+  content: "DF";
+  color: #08398b;
+  top: 0;
+  left: -40px;
+  font: 400 30px/1 "VT323", monospace;
+}
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+.btn-container button {
+  border: none;
+  background: #444;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font: 400 20px/1 "VT323", monospace;
+}
+.hide {
+  opacity: 0;
+}
