@@ -19,23 +19,39 @@ export default class PokemonApi {
     this.previousPokemon = 0;
   }
 
-  async getUrl(id) {
+  async getData(id) {
     const resp = await fetch(`${this.url}${id}`);
     const dados = await resp.json();
     const { name, stats, types, sprites } = dados;
 
+    this.getImg(sprites);
+    this.getName(name);
+    this.getStats(stats);
+    this.getTypes(types);
+  }
+
+  getImg(sprites) {
     this.pokeImgFront.attributes.src.value = sprites.front_default;
     this.pokeImgBack.attributes.src.value = sprites.back_default;
-    this.pokeName.innerText = name;
+  }
 
+  getName(name) {
+    this.pokeName.innerText = name;
+  }
+
+  getStats(stats) {
     this.pokeHp.style.width = `${stats[0].base_stat / 2}px`;
     this.pokeAttack.style.width = `${stats[1].base_stat / 2}px`;
     this.pokeDefense.style.width = `${stats[2].base_stat / 2}px`;
+  }
 
-    this.pokeType1.setAttribute("class", "poke-type1");
-    this.pokeType2.setAttribute("class", "poke-type2");
+  getTypes(types) {
+    this.cleanAttribute(this.pokeType1, "class", "poke-type1");
+    this.cleanAttribute(this.pokeType2, "class", "poke-type2");
+
     this.pokeType1.innerText = types[0].type.name;
     this.pokeType1.classList.add(types[0].type.name);
+
     if (types[1]) {
       this.pokeType2.classList.remove("hide");
       this.pokeType2.innerText = types[1].type.name;
@@ -45,9 +61,13 @@ export default class PokemonApi {
     }
   }
 
+  cleanAttribute(element, attribute, attributeElement = "") {
+    element.setAttribute(attribute, attributeElement);
+  }
+
   next() {
-    if (this.getUrl(this.nextPokemon)) {
-      this.getUrl(this.nextPokemon);
+    if (this.getData(this.nextPokemon)) {
+      this.getData(this.nextPokemon);
       this.nextPokemon += 1;
       this.previousPokemon += 1;
       this.currentPokemon += 1;
@@ -56,7 +76,7 @@ export default class PokemonApi {
 
   previous() {
     if (this.currentPokemon > 1) {
-      this.getUrl(this.previousPokemon);
+      this.getData(this.previousPokemon);
       this.nextPokemon -= 1;
       this.previousPokemon -= 1;
       this.currentPokemon -= 1;
@@ -74,7 +94,7 @@ export default class PokemonApi {
   }
 
   init() {
-    this.getUrl(this.currentPokemon);
+    this.getData(this.currentPokemon);
     this.bind();
     this.addEvents();
   }
