@@ -89,16 +89,18 @@ export default class PokemonApi {
   async getIdByName() {
     try {
       this.searchError.classList.remove("active");
-      const pokemonSearch = this.pokeSearch.value.toLowerCase();
-      const resp = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${pokemonSearch}`
-      );
-      const dados = await resp.json();
-      const { id } = dados;
-      this.getData(id);
-      this.currentPokemon = id;
-      this.nextPokemon = id + 1;
-      this.previousPokemon = id - 1;
+      if (this.pokeSearch.value !== "") {
+        const pokemonSearch = this.pokeSearch.value.toLowerCase();
+        const resp = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${pokemonSearch}`
+        );
+        const dados = await resp.json();
+        const { id } = dados;
+        this.getData(id);
+        this.currentPokemon = id;
+        this.nextPokemon = id + 1;
+        this.previousPokemon = id - 1;
+      }
     } catch {
       this.searchError.classList.add("active");
     }
