@@ -97,5 +97,6 @@ export default class PokemonApi {
     this.getData(this.currentPokemon);
     this.bind();
     this.addEvents();
+    return this;
   }
 }
