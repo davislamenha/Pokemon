@@ -19,6 +19,7 @@ export default class PokemonApi {
     this.previousPokemon = 0;
 
     this.pokeSearch = document.querySelector(".poke-search");
+    this.searchError = document.querySelector(".search-error");
   }
 
   async getData(id) {
@@ -87,6 +88,7 @@ export default class PokemonApi {
 
   async getIdByName() {
     try {
+      this.searchError.classList.remove("active");
       const pokemonSearch = this.pokeSearch.value.toLowerCase();
       const resp = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${pokemonSearch}`
@@ -97,7 +99,9 @@ export default class PokemonApi {
       this.currentPokemon = id;
       this.nextPokemon = id + 1;
       this.previousPokemon = id - 1;
-    } catch {}
+    } catch {
+      this.searchError.classList.add("active");
+    }
   }
 
   addEvents() {
