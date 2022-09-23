@@ -13,13 +13,16 @@ export default class PokemonApi {
 
     this.nextBtn = document.querySelector(".next");
     this.previousBtn = document.querySelector(".prev");
-
     this.currentPokemon = 1;
     this.nextPokemon = 2;
     this.previousPokemon = 0;
 
     this.pokeSearch = document.querySelector(".poke-search");
     this.searchError = document.querySelector(".search-error");
+
+    this.catchBtn = document.querySelector(".catch");
+    this.pokeStorage = document.querySelector(".poke-storage-container");
+    this.savedPokemon = document.querySelectorAll(".poke-storage-container li");
   }
 
   async getData(id) {
@@ -86,7 +89,7 @@ export default class PokemonApi {
     }
   }
 
-  async getIdByName() {
+  async getByIdOrName() {
     try {
       this.searchError.classList.remove("active");
       if (this.pokeSearch.value !== "") {
@@ -106,16 +109,34 @@ export default class PokemonApi {
     }
   }
 
+  storagePokemon() {
+    const li = document.createElement("li");
+    const img = document.createElement("img");
+    const imgUrl = this.pokeImgFront.src;
+    img.setAttribute("src", imgUrl);
+    img.dataset.id = this.currentPokemon;
+    li.appendChild(img);
+    this.pokeStorage.appendChild(li);
+  }
+
+  showSavedPokemonInfo(event) {
+    this.getData(event.target.dataset.id);
+  }
+
   addEvents() {
     this.nextBtn.addEventListener("click", this.next);
     this.previousBtn.addEventListener("click", this.previous);
-    this.pokeSearch.addEventListener("change", this.getIdByName);
+    this.pokeSearch.addEventListener("change", this.getByIdOrName);
+    this.catchBtn.addEventListener("click", this.storagePokemon);
+    this.pokeStorage.addEventListener("click", this.showSavedPokemonInfo);
   }
 
   bind() {
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
-    this.getIdByName = this.getIdByName.bind(this);
+    this.getByIdOrName = this.getByIdOrName.bind(this);
+    this.storagePokemon = this.storagePokemon.bind(this);
+    this.showSavedPokemonInfo = this.showSavedPokemonInfo.bind(this);
   }
 
   init() {

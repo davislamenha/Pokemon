@@ -1,6 +1,8 @@
 @import "./poke-search.css";
 @import "./pokemon-api.css";
+@import "./poke-storage.css";
 
+/* GERAL */
 body {
   background: #ffd57b;
   box-sizing: border-box;
@@ -20,4 +22,9 @@ header p {
   font: 400 30px/1 "Sigmar One", serif;
   text-transform: uppercase;
   color: #fff;
+}
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
 }
