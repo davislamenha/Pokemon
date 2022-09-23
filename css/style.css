@@ -28,3 +28,10 @@ header p {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
 }
+
+@media (max-width: 800px) {
+  .main-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
