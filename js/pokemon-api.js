@@ -20,7 +20,7 @@ export default class PokemonApi {
     this.pokeSearch = document.querySelector(".poke-search");
     this.searchError = document.querySelector(".search-error");
 
-    this.catchBtn = document.querySelector(".catch");
+    this.saveBtn = document.querySelector(".save");
     this.pokeStorage = document.querySelector(".poke-storage-container");
     this.savedPokemon = document.querySelectorAll(".poke-storage-container li");
   }
@@ -52,8 +52,8 @@ export default class PokemonApi {
   }
 
   getTypes(types) {
-    this.cleanAttribute(this.pokeType1, "class", "poke-type1");
-    this.cleanAttribute(this.pokeType2, "class", "poke-type2");
+    this.clearAttribute(this.pokeType1, "class", "poke-type1");
+    this.clearAttribute(this.pokeType2, "class", "poke-type2");
 
     this.pokeType1.innerText = types[0].type.name;
     this.pokeType1.classList.add(types[0].type.name);
@@ -67,7 +67,7 @@ export default class PokemonApi {
     }
   }
 
-  cleanAttribute(element, attribute, attributeElement = "") {
+  clearAttribute(element, attribute, attributeElement = "") {
     element.setAttribute(attribute, attributeElement);
   }
 
@@ -89,7 +89,7 @@ export default class PokemonApi {
     }
   }
 
-  async getByIdOrName() {
+  async showPokemonSearched() {
     try {
       this.searchError.classList.remove("active");
       if (this.pokeSearch.value !== "") {
@@ -126,15 +126,15 @@ export default class PokemonApi {
   addEvents() {
     this.nextBtn.addEventListener("click", this.next);
     this.previousBtn.addEventListener("click", this.previous);
-    this.pokeSearch.addEventListener("change", this.getByIdOrName);
-    this.catchBtn.addEventListener("click", this.storagePokemon);
+    this.pokeSearch.addEventListener("change", this.showPokemonSearched);
+    this.saveBtn.addEventListener("click", this.storagePokemon);
     this.pokeStorage.addEventListener("click", this.showSavedPokemonInfo);
   }
 
   bind() {
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
-    this.getByIdOrName = this.getByIdOrName.bind(this);
+    this.showPokemonSearched = this.showPokemonSearched.bind(this);
     this.storagePokemon = this.storagePokemon.bind(this);
     this.showSavedPokemonInfo = this.showSavedPokemonInfo.bind(this);
   }
